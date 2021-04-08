@@ -1,5 +1,5 @@
 {
-    "name": "neurony/laravel-revisions",
+    "name": "vi-iotcustom/laravel-revisions",
     "description": "Create multiple revisions of any Eloquent model record along with its underlying relationships",
     "license": "MIT",
     "keywords": [
