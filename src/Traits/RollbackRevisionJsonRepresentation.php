@@ -52,7 +52,7 @@ trait RollbackRevisionJsonRepresentation
         // delete extra added child related records after the revision checkpoint
         if (RelationHelper::isChild($attributes['type'])) {
             $oldRelated = $this->{$relation}()->pluck($relatedPrimaryKey)->toArray();
-            $currentRelated = array_map(function ($item) use ($relatedPrimaryKey) {
+            $currentRelated = array_map(static function ($item) use ($relatedPrimaryKey) {
                 return $item[$relatedPrimaryKey];
             }, $relatedRecords);
 

@@ -26,7 +26,7 @@ class ServiceProvider extends BaseServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->publishConfigs();
         $this->publishMigrations();
@@ -38,7 +38,7 @@ class ServiceProvider extends BaseServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->registerBindings();
     }
@@ -46,7 +46,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * @return void
      */
-    protected function publishConfigs()
+    protected function publishConfigs(): void
     {
         $this->publishes([
             __DIR__.'/../config/revisions.php' => config_path('revisions.php'),
@@ -56,7 +56,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * @return void
      */
-    protected function publishMigrations()
+    protected function publishMigrations(): void
     {
         if (empty(File::glob(database_path('migrations/*_create_revisions_table.php')))) {
             $timestamp = date('Y_m_d_His', time());
@@ -71,7 +71,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * @return void
      */
-    protected function registerRouteBindings()
+    protected function registerRouteBindings(): void
     {
         Route::model('revision', RevisionModelContract::class);
     }
@@ -79,7 +79,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * @return void
      */
-    protected function registerBindings()
+    protected function registerBindings(): void
     {
         $this->app->bind(RevisionModelContract::class, $this->config['revisions']['revision_model'] ?? Revision::class);
         $this->app->alias(RevisionModelContract::class, 'revision.model');

@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-revisions` will be documented in this file
 
+# 6.0.0 - 2021/04/01
+
+- Support Laravel 8.x
+
 ## 5.0.0 - 2020/10/06
 
 - Support Laravel 7.x

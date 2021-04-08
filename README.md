@@ -1,22 +1,6 @@
-# Package discontinued! Check out VARBOX.IO instead.
-
-Unfortunately this package is now discontinued.   
-Please check out [Varbox](https://varbox.io) (Laravel Admin Panel) for this functionality and much more.
-
-- Buy: [https://varbox.io/buy](https://varbox.io/buy)
-- Docs: [https://varbox.io/docs](https://varbox.io/docs)
-- Demo: [https://demo.varbox.test/admin](https://demo.varbox.test/admin)
-- Repo [https://github.com/VarboxInternational/varbox](https://github.com/VarboxInternational/varbox)
-
-Thank you! 
-
----
+## Forked from [Neurony/laravel-revisions](https://github.com/Neurony/laravel-revisions)
 
 ### Create revisions for any Eloquent model along with its relationships   
- 
-[![Build Status](https://travis-ci.org/Neurony/laravel-revisions.svg?branch=master)](https://travis-ci.org/Neurony/laravel-revisions)
-[![StyleCI](https://github.styleci.io/repos/170915589/shield?branch=master)](https://github.styleci.io/repos/170915589)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Neurony/laravel-revisions/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Neurony/laravel-revisions/?branch=master)
 
 - [Overview](#overview)   
 - [Installation](#installation)   
@@ -42,22 +26,28 @@ Relationship types that can be revisioned: `hasOne`, `morphOne`, `hasMany`, `mor
 
 ### Installation
 
-Install the package via Composer (for **Laravel 6.0 and above**):
+Install the package via Composer (for **Laravel 8.0**):
 
 ```
-composer require neurony/laravel-revisions
+composer require vi-iotcustom/laravel-revisions
+```
+
+Install the package via Composer (for **Laravel 6.0 and 7.0**):
+
+```
+composer require vi-iotcustom/laravel-revisions:5.0.0
 ```
 
 Install the package via Composer (for **Laravel 5.8**):
 
 ```
-composer require neurony/laravel-revisions:3.1.0
+composer require vi-iotcustom/laravel-revisions:3.1.0
 ```
 
 Install the package via Composer (for **Laravel 5.7 and below**):
 
 ```
-composer require neurony/laravel-revisions:2.0.0
+composer require vi-iotcustom/laravel-revisions:2.0.0
 ```
 
 Publish the config file with:

@@ -5,6 +5,8 @@ namespace Neurony\Revisions\Models;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Neurony\Revisions\Contracts\RevisionModelContract;
 
 class Revision extends Model implements RevisionModelContract
@@ -40,23 +42,25 @@ class Revision extends Model implements RevisionModelContract
     /**
      * Revision belongs to user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo|null
      */
-    public function user()
+    public function user(): BelongsTo|null
     {
-        $user = config('revisions.user_model', null);
+        $user = config('revisions.user_model');
 
         if ($user && class_exists($user)) {
             return $this->belongsTo($user, 'user_id');
         }
+
+        return null;
     }
 
     /**
      * Get all of the owning revisionable models.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * @return MorphTo
      */
-    public function revisionable()
+    public function revisionable(): MorphTo
     {
         return $this->morphTo();
     }
@@ -65,9 +69,9 @@ class Revision extends Model implements RevisionModelContract
      * Filter the query by the given user id.
      *
      * @param Builder $query
-     * @param Authenticatable|int $user
+     * @param Authenticatable $user
      */
-    public function scopeWhereUser($query, Authenticatable $user): void
+    public function scopeWhereUser(Builder $query, Authenticatable $user): void
     {
         $query->where('user_id', $user->id);
     }
@@ -79,7 +83,7 @@ class Revision extends Model implements RevisionModelContract
      * @param int $id
      * @param string $type
      */
-    public function scopeWhereRevisionable($query, int $id, string $type)
+    public function scopeWhereRevisionable(Builder $query, int $id, string $type): void
     {
         $query->where([
             'revisionable_id' => $id,

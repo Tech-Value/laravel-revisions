@@ -50,19 +50,18 @@ trait SaveRevisionJsonRepresentation
         unset($data[$this->getKeyName()]);
 
         if ($this->usesTimestamps() && ! $this->revisionOptions->revisionTimestamps) {
-            unset($data[$this->getCreatedAtColumn()]);
-            unset($data[$this->getUpdatedAtColumn()]);
+            unset($data[$this->getCreatedAtColumn()], $data[$this->getUpdatedAtColumn()]);
         }
 
         if ($fieldsToRevision && is_array($fieldsToRevision) && ! empty($fieldsToRevision)) {
             foreach ($data as $field => $value) {
-                if (! in_array($field, $fieldsToRevision)) {
+                if (!in_array($field, $fieldsToRevision, true)) {
                     unset($data[$field]);
                 }
             }
         } elseif ($fieldsToNotRevision && is_array($fieldsToNotRevision) && ! empty($fieldsToNotRevision)) {
             foreach ($data as $field => $value) {
-                if (in_array($field, $fieldsToNotRevision)) {
+                if (in_array($field, $fieldsToNotRevision, true)) {
                     unset($data[$field]);
                 }
             }
@@ -271,7 +270,7 @@ trait SaveRevisionJsonRepresentation
         $relations = [];
 
         foreach (RelationHelper::getModelRelations($this) as $relation => $attributes) {
-            if (in_array($relation, $this->revisionOptions->revisionRelations)) {
+            if (in_array($relation, $this->revisionOptions->revisionRelations, true)) {
                 $relations[$relation] = $attributes;
             }
         }

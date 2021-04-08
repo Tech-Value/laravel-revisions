@@ -11,10 +11,10 @@ class CreateTestingTables extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('authors', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title');
             $table->string('name');
             $table->integer('age');
@@ -22,7 +22,7 @@ class CreateTestingTables extends Migration
         });
 
         Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('author_id')->unsigned()->index();
             $table->string('name');
             $table->string('slug')->unique();
@@ -34,7 +34,7 @@ class CreateTestingTables extends Migration
         });
 
         Schema::create('replies', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('post_id')->unsigned()->index();
             $table->string('subject');
             $table->text('content');
@@ -43,7 +43,7 @@ class CreateTestingTables extends Migration
         });
 
         Schema::create('comments', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('post_id')->unsigned()->index();
             $table->string('title');
             $table->text('content');
@@ -54,7 +54,7 @@ class CreateTestingTables extends Migration
         });
 
         Schema::create('tags', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->timestamps();
         });
@@ -69,7 +69,7 @@ class CreateTestingTables extends Migration
         });
 
         Schema::create('revisions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
 
             $table->integer('user_id')->unsigned()->index()->nullable();
             $table->morphs('revisionable');
@@ -86,7 +86,7 @@ class CreateTestingTables extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('revisions');
         Schema::dropIfExists('post_tag');

@@ -9,58 +9,44 @@ class RevisionOptions
 {
     /**
      * Flag whether to make a revision on model creation.
-     *
-     * @var bool
      */
-    private $revisionOnCreate = false;
+    private bool $revisionOnCreate = false;
 
     /**
      * The limit of revisions to be created for a model instance.
      * If the limit is reached, oldest revisions will start getting deleted to make room for new ones.
-     *
-     * @var int
      */
-    private $revisionLimit;
+    private ?int $revisionLimit = null;
 
     /**
      * The fields that should be revisionable.
      * By default (null) all fields are revisionable.
-     *
-     * @var array
      */
-    private $revisionFields = [];
+    private array $revisionFields = [];
 
     /**
      * The fields that should be excluded from revisioning.
      * By default (null) no fields are excluded from revisioning.
-     *
-     * @var array
      */
-    private $revisionNotFields = [];
+    private array $revisionNotFields = [];
 
     /**
      * The model's relations that should be revisionable.
      * By default (null) none of the model's relations are revisionable.
-     *
-     * @var array
      */
-    private $revisionRelations = [];
+    private array $revisionRelations = [];
 
     /**
      * Flag indicating whether to create a revision for the model, when rolling back another revision of that model.
      * If set to "true", before rolling back a revision, the original model instance's data will be stored to a new revision.
      * If set to "false", after rolling back a revision, the original model instance's data will NOT be stored to a new revision.
-     *
-     * @var bool
      */
-    private $createRevisionWhenRollingBack = true;
+    private bool $createRevisionWhenRollingBack = true;
 
     /**
      * Flag indicating whether to include timestamps in the revision.
-     *
-     * @var bool
      */
-    private $revisionTimestamps = false;
+    private bool $revisionTimestamps = false;
 
     /**
      * Get the value of a property of this class.
@@ -68,8 +54,9 @@ class RevisionOptions
      * @param $name
      * @return mixed
      * @throws Exception
+     * @noinspection MagicMethodsValidityInspection
      */
-    public function __get($name)
+    public function __get($name): mixed
     {
         if (property_exists(static::class, $name)) {
             return $this->{$name};
