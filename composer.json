@@ -11,6 +11,7 @@
         "changes",
         "copy"
     ],
+    "type": "library",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "authors": [
