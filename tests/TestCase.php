@@ -50,7 +50,7 @@ abstract class TestCase extends Orchestra
      */
     protected function setUpDatabase(Application $app)
     {
-        $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/Database/Migrations');
     }
 
     /**
@@ -62,7 +62,7 @@ abstract class TestCase extends Orchestra
 
         for ($i = 1; $i <= 3; $i++) {
             Tag::create([
-                'name' => 'Tag name '.$i,
+                'name' => 'Tag name ' . $i,
             ]);
         }
 
@@ -91,8 +91,8 @@ abstract class TestCase extends Orchestra
             $this->post->comments()->create([
                 'id' => $i,
                 'post_id' => $this->post->id,
-                'title' => 'Comment title '.$i,
-                'content' => 'Comment content '.$i,
+                'title' => 'Comment title ' . $i,
+                'content' => 'Comment content ' . $i,
                 'date' => Carbon::now(),
                 'active' => true,
             ]);

@@ -116,7 +116,7 @@ class RelationHelper
      */
     public static function isDirect(string $relation): bool
     {
-        return in_array($relation, static::$directRelations);
+        return in_array($relation, static::$directRelations, true);
     }
 
     /**
@@ -127,7 +127,7 @@ class RelationHelper
      */
     public static function isPivoted(string $relation): bool
     {
-        return in_array($relation, static::$pivotedRelations);
+        return in_array($relation, static::$pivotedRelations, true);
     }
 
     /**
@@ -138,7 +138,7 @@ class RelationHelper
      */
     public static function isParent(string $relation): bool
     {
-        return in_array($relation, static::$parentRelations);
+        return in_array($relation, static::$parentRelations, true);
     }
 
     /**
@@ -149,7 +149,7 @@ class RelationHelper
      */
     public static function isChild(string $relation): bool
     {
-        return in_array($relation, static::$childRelations);
+        return in_array($relation, static::$childRelations, true);
     }
 
     /**
@@ -161,7 +161,7 @@ class RelationHelper
      */
     public static function isChildSingle(string $relation): bool
     {
-        return in_array($relation, static::$childRelationsSingle);
+        return in_array($relation, static::$childRelationsSingle, true);
     }
 
     /**
@@ -173,7 +173,7 @@ class RelationHelper
      */
     public static function isChildMultiple(string $relation): bool
     {
-        return in_array($relation, static::$childRelationsMultiple);
+        return in_array($relation, static::$childRelationsMultiple, true);
     }
 
     /**

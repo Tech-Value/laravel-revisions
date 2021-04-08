@@ -5,6 +5,7 @@ namespace Neurony\Revisions\Traits;
 use Closure;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -21,10 +22,8 @@ trait HasRevisions
     /**
      * The container for all the options necessary for this trait.
      * Options can be viewed in the Neurony\Revisions\Options\RevisionOptions file.
-     *
-     * @var RevisionOptions
      */
-    protected $revisionOptions;
+    protected ?RevisionOptions $revisionOptions = null;
 
     /**
      * Set the options for the HasRevisions trait.
@@ -39,7 +38,7 @@ trait HasRevisions
      *
      * @return void
      */
-    public static function bootHasRevisions()
+    public static function bootHasRevisions(): void
     {
         static::created(function (Model $model) {
             $model->createNewRevision();
@@ -81,9 +80,9 @@ trait HasRevisions
     /**
      * Get all the revisions for a given model instance.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return MorphMany
      */
-    public function revisions()
+    public function revisions(): MorphMany
     {
         $revision = config('revisions.revision_model', Revision::class);
 
@@ -93,15 +92,15 @@ trait HasRevisions
     /**
      * Create a new revision record for the model instance.
      *
-     * @return Revision|bool
+     * @return RevisionModelContract|bool
      * @throws Exception
      */
-    public function createNewRevision()
+    public function createNewRevision(): RevisionModelContract|bool
     {
         $this->initRevisionOptions();
 
         if ($this->wasRecentlyCreated && $this->revisionOptions->revisionOnCreate !== true) {
-            return;
+            return false;
         }
 
         try {
